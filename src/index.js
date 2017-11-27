@@ -124,14 +124,39 @@ const Reception = () => (
   </div>
 )
 
-const Rsvp = () => (
-  <div>
-    <h2>RSVP</h2>
-  </div>
-)
+class Rsvp extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      name: ''
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>RSVP</h2>
+        <form>
+        <label>
+          Name:
+          <input type="text" name="name" />
+        </label>
+        <input type="submit" value="Submit" />
+        </form>
+      </div>
+    );
+  }
+}
+
 const Registry = () => (
   <div>
     <h2>Registry</h2>
+    <p>
+    </p>
   </div>
 )
 const Playlist = () => (
