@@ -1,6 +1,19 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font-size: 14px;
+  font-family: 'Spectral SC', serif;
   margin: 20px;
+  color: #373737;
+  background: #f4f4f4;
+}
+
+a {
+  color: #c0b283;
+  font-weight: normal;
+  text-decoration: none;
+}
+a:hover {
+  color: #ded79a;
+  font-weight: underline;
 }
 
 ol, ul {

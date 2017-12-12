@@ -142,9 +142,39 @@ class Rsvp extends React.Component {
         <h2>RSVP</h2>
         <form>
         <label>
+          E-mail:
+          <input type="email" name="email" />
+        </label>
+        <br />
+        <label>
           Name:
           <input type="text" name="name" />
         </label>
+        <br />
+        <label>
+        The big question... Will you be there?<br />
+          <input type="radio" name="going" value="yes" checked />Yes!<br />
+          <input type="radio" name="going" value="no" />No, I/we will be square.
+        </label>
+        <br />
+        <label>
+          Plus One's Name:
+          <input type="text" name="name2" />
+        </label>
+        <br />
+        <label>
+          Food Stuffs:
+        </label>
+        <br />
+        <label>
+          Vegan
+          <input type="number" name="vegan" min="0" max="2" /><br />
+          Gluten-free
+          <input type="number" name="vegan" min="0" max="2" /><br />
+          Allergies
+          <textarea /><br />
+        </label>
+        <br />
         <input type="submit" value="Submit" />
         </form>
       </div>
