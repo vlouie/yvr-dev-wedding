@@ -16,6 +16,14 @@ a:hover {
   font-weight: underline;
 }
 
+h2 {
+  font-family: 'Pacifico', cursive;
+}
+
+h3 {
+  font-family: 'Josefin Slab', serif;
+}
+
 ol, ul {
 }
 
