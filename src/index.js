@@ -85,13 +85,13 @@ class Board extends React.Component {
 }
 
 const Home = () => (
-  <div>
+  <div className="content">
     <h2>Victoria & Sterling</h2>
   </div>
 )
 
 const Story = () => (
-  <div>
+  <div className="content">
     <h2>Our Story</h2>
   </div>
 )
@@ -114,7 +114,7 @@ class Map extends React.Component {
 const iframe = '<iframe width="500" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJOY_CAWJ3hlQRFi4pBpGW5b0&key=AIzaSyCauh5KUDIhwiC-8esLwCAlQMeNxsmV2Es" allowfullscreen></iframe>';
 
 const Reception = () => (
-  <div>
+  <div className="content">
     <h2>Reception</h2>
     <h3>September 1, 2018</h3>
     <h3>Burnaby Mountain Clubhouse</h3>
@@ -138,7 +138,7 @@ class Rsvp extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="content">
         <h2>RSVP</h2>
         <form>
         <label>
@@ -183,15 +183,19 @@ class Rsvp extends React.Component {
 }
 
 const Registry = () => (
-  <div>
+  <div className="content">
     <h2>Registry</h2>
     <p>
     </p>
   </div>
 )
 const Playlist = () => (
-  <div>
+  <div className="content">
     <h2>Playlist</h2>
+    <p>
+      DJ schmee-jay, we don't need a DJ! But we <i>do</i> need your help.<br />
+      Help us build a fun, kick-ass playlist of tunes that <i>you</i> want to dance to!
+    </p>
   </div>
 )
 
@@ -209,8 +213,6 @@ class Game extends React.Component {
               <li><Link to="/playlist">Playlist</Link></li>
               <li><Link to="/story">Our Story</Link></li>
             </ul>
-
-            <hr/>
 
             <Route exact path="/" component={Home}/>
             <Route path="/reception" component={Reception}/>
