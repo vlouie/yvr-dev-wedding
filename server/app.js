@@ -20,7 +20,6 @@ app.get('/server/authorize_spotify', (req, res) => {
   const secret = 'e98ec1264b1647dc99906f3361e7a04a';
   const thing = `${client_id}:${secret}`;
   const auth = `Basic ${new Buffer(thing).toString('base64')}`;
-  //const auth = 'Basic '+ thing;
   request.post('https://accounts.spotify.com/api/token',
      {
        form: {
@@ -36,7 +35,6 @@ app.get('/server/authorize_spotify', (req, res) => {
        res.send(response);
      }
   });
-  //res.send(response);
 });
 
 // Always return the main index.html, so react-router render the route in the client

@@ -222,24 +222,31 @@ class Playlist extends React.Component {
     }
 
     handleChange(event) {
-      this.setState({query: event.target.value});
+      var stateObj = this.state;
+      stateObj.query = event.target.value;
+      this.setState(stateObj);
     }
 
     handleSubmit(event) {
-      console.log(this.state);
+      var stateObj = this.state;
       event.preventDefault();
-      axios.get('https://api.spotify.com/v1/search?type=track&limit=50&q=',
-      { headers: { Authorization: this.state.token } }).
+      axios.get(`https://api.spotify.com/v1/search?type=track&market=CA&limit=50&q=${this.state.query}`,
+      { headers: { Authorization: `Bearer ${this.state.token}` } }).
         then(res => {
           console.log(res);
+          stateObj.tracks = res.data.tracks;
+          this.setState(stateObj);
         })
     }
 
     componentDidMount(){
+      var stateObj = this.state;
       axios.get('/server/authorize_spotify').then(res => {
-            console.log(res);
-            this.setState({token: res.data.token, type: res.data.type});
-          })
+        console.log(res);
+        stateObj.token = res.data.token;
+        stateObj.type = res.data.type;
+        this.setState(stateObj);
+      })
     }
 
     render() {
