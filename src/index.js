@@ -213,7 +213,9 @@ class Playlist extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        query: ''
+        query: '',
+        token: '',
+        type: ''
       };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleChange = this.handleChange.bind(this);
@@ -227,23 +229,16 @@ class Playlist extends React.Component {
       console.log(this.state);
       event.preventDefault();
       axios.get('https://api.spotify.com/v1/search?type=track&limit=50&q=',
-      { headers: { Authorization: '' } }).
+      { headers: { Authorization: this.state.token } }).
         then(res => {
           console.log(res);
         })
     }
 
     componentDidMount(){
-      const client_id = '478187d491ff43da8526fb138d8fce7e';
-      const secret = 'e98ec1264b1647dc99906f3361e7a04a';
-      const thing = `${client_id}:${secret}`
-      const auth = `Basic ${window.btoa(thing)}`;
-      axios.post('https://accounts.spotify.com/api/token',
-          {
-              grant_type: 'client_credentials',
-              headers: { Authorization: auth }
-          }).then(res => {
-              console.log(res);
+      axios.get('/server/authorize_spotify').then(res => {
+            console.log(res);
+            this.setState({token: res.data.token, type: res.data.type});
           })
     }
 
