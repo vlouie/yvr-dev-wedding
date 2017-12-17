@@ -6,6 +6,7 @@ import {
   Link
 } from 'react-router-dom';
 import './index.css';
+import axios from 'axios';
 
 // class Square extends React.Component {
 //   render() {
@@ -189,15 +190,86 @@ const Registry = () => (
     </p>
   </div>
 )
-const Playlist = () => (
-  <div className="content">
-    <h2>Playlist</h2>
-    <p>
-      DJ schmee-jay, we don't need a DJ! But we <i>do</i> need your help.<br />
-      Help us build a fun, kick-ass playlist of tunes that <i>you</i> want to dance to!
-    </p>
-  </div>
-)
+
+
+class PlaylistDisplay extends React.Component {
+  iframe() {
+    return {
+      __html: this.props.iframe
+    }
+  }
+  render() {
+    return (
+      <div>
+        <div dangerouslySetInnerHTML={ this.iframe() } />
+      </div>
+    );
+  }
+};
+
+
+
+class Playlist extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        query: ''
+      };
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+      this.setState({query: event.target.value});
+    }
+
+    handleSubmit(event) {
+      console.log(this.state);
+      event.preventDefault();
+      axios.get('https://api.spotify.com/v1/search?type=track&limit=50&q=',
+      { headers: { Authorization: '' } }).
+        then(res => {
+          console.log(res);
+        })
+    }
+
+    componentDidMount(){
+      const client_id = '478187d491ff43da8526fb138d8fce7e';
+      const secret = 'e98ec1264b1647dc99906f3361e7a04a';
+      const thing = `${client_id}:${secret}`
+      const auth = `Basic ${window.btoa(thing)}`;
+      axios.post('https://accounts.spotify.com/api/token',
+          {
+              grant_type: 'client_credentials',
+              headers: { Authorization: auth }
+          }).then(res => {
+              console.log(res);
+          })
+    }
+
+    render() {
+  const playlistiFrame = '<iframe src="https://open.spotify.com/embed/user/delusionelle/playlist/5BjGI2u53v2U4jSWML9FNT" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+      return (
+      <div className="content">
+        <h2>Playlist</h2>
+        <p>
+          DJ schmee-jay, we don't need a DJ! But we <i>do</i> need your help.<br />
+          Help us build a fun, kick-ass playlist of tunes that <i>you</i> want to dance to!
+        </p>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Search for a song...
+            <input type="text" value={this.state.query} onChange={this.handleChange} name="song" />
+            <input type="submit" value="Submit" />
+          </label>
+        </form>
+        <div className="songResults">
+        </div>
+        <PlaylistDisplay iframe={playlistiFrame} />
+      </div>
+      );
+    }
+};
 
 class Game extends React.Component {
   render() {
