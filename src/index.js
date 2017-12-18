@@ -208,6 +208,22 @@ class PlaylistDisplay extends React.Component {
 };
 
 
+class SongResult extends React.Component {
+  render() {
+    return(
+      <div className='songResult'>
+        <div className='songResult-img'>
+          <img src={this.props.albumart} />
+        </div>
+        <div className='songResult-info'>
+          <h4>{this.props.title}</h4>
+          <h4>{this.props.artist}</h4>
+          <h4>{this.props.album}</h4>
+        </div>
+      </div>
+    );
+  }
+};
 
 class Playlist extends React.Component {
     constructor(props) {
@@ -215,7 +231,8 @@ class Playlist extends React.Component {
       this.state = {
         query: '',
         token: '',
-        type: ''
+        type: '',
+        tracks: []
       };
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleChange = this.handleChange.bind(this);
@@ -230,11 +247,11 @@ class Playlist extends React.Component {
     handleSubmit(event) {
       var stateObj = this.state;
       event.preventDefault();
-      axios.get(`https://api.spotify.com/v1/search?type=track&market=CA&limit=50&q=${this.state.query}`,
-      { headers: { Authorization: `Bearer ${this.state.token}` } }).
-        then(res => {
+      axios.get(`https://api.spotify.com/v1/search?type=track&market=CA&limit=20&q=${this.state.query}`,
+      { headers: { Authorization: `Bearer ${this.state.token}` } })
+        .then(res => {
           console.log(res);
-          stateObj.tracks = res.data.tracks;
+          stateObj.tracks = res.data.tracks.items;
           this.setState(stateObj);
         })
     }
@@ -250,28 +267,43 @@ class Playlist extends React.Component {
     }
 
     render() {
-  const playlistiFrame = '<iframe src="https://open.spotify.com/embed/user/delusionelle/playlist/5BjGI2u53v2U4jSWML9FNT" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+      const playlistiFrame = '<iframe src="https://open.spotify.com/embed/user/delusionelle/playlist/5BjGI2u53v2U4jSWML9FNT" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
       return (
       <div className="content">
         <h2>Playlist</h2>
-        <p>
-          DJ schmee-jay, we don't need a DJ! But we <i>do</i> need your help.<br />
-          Help us build a fun, kick-ass playlist of tunes that <i>you</i> want to dance to!
-        </p>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Search for a song...
-            <input type="text" value={this.state.query} onChange={this.handleChange} name="song" />
-            <input type="submit" value="Submit" />
-          </label>
-        </form>
-        <div className="songResults">
+        <div className="left-content">
+          <p>
+            DJ schmee-jay, we don't need a DJ! But we <i>do</i> need your help.<br />
+            Help us build a fun, kick-ass playlist of tunes that <i>you</i> want to dance to!
+          </p>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Search for a song...
+              <input type="text" value={this.state.query} onChange={this.handleChange} name="song" />
+              <input type="submit" value="Submit" />
+            </label>
+          </form>
+          <div className="songResults">
+            {
+                this.state.tracks.map(function(trackData){
+                    return <SongResult
+                      title={trackData.name}
+                      artist={trackData.artists[0].name}
+                      album={trackData.album.name}
+                      albumart={trackData.album.images[2].url}
+                    />;
+                })
+            }
+          </div>
         </div>
-        <PlaylistDisplay iframe={playlistiFrame} />
+        <div className="right-content">
+          <PlaylistDisplay iframe={playlistiFrame} />
+        </div>
       </div>
       );
     }
 };
+
 
 class Game extends React.Component {
   render() {
@@ -296,15 +328,6 @@ class Game extends React.Component {
             <Route path="/story" component={Story}/>
           </div>
         </Router>
-        <div className="game">
-          <div className="game-board">
-            <Board />
-          </div>
-          <div className="game-info">
-            <div>{/* status */}</div>
-            <ol>{/* TODO */}</ol>
-          </div>
-        </div>
       </div>
     );
   }

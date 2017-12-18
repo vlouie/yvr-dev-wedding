@@ -21,6 +21,7 @@ h2 {
   padding: 0.3em;
   font-family: 'Pacifico', cursive;
   text-align: center;
+  margin-bottom: 0;
 }
 
 h3, h4 {
@@ -50,6 +51,40 @@ ul li {
 .content {
   width: 90%;
   margin: 0 auto;
+}
+
+.left-content {
+  width: 70%;
+  margin: 0 auto;
+  float: left;
+  background: #fff;
+}
+
+.right-content {
+  width: 30%;
+  margin: 0 auto;
+  float: right;
+  background: #fff;
+}
+
+.songResult {
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  min-height: 65px;
+}
+.songResult h4 {
+  margin: 0;
+}
+
+.songResult-img {
+  float: left;
+}
+.songResult-info {
+  margin-left: 65px;
+}
+.songResult img {
+  display: block;
 }
 
 .board-row:after {
