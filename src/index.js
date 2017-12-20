@@ -210,6 +210,9 @@ class PlaylistDisplay extends React.Component {
 
 class SongResult extends React.Component {
   render() {
+      const playlist_id = '5BjGI2u53v2U4jSWML9FNT';
+      const user_id = 'delusionelle';
+      // https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks
     return(
       <div className='songResult'>
         <div className='songResult-img'>
@@ -271,16 +274,20 @@ class Playlist extends React.Component {
       return (
       <div className="content">
         <h2>Playlist</h2>
-        <div className="left-content">
+        <div className="left-content inner-content">
           <p>
             DJ schmee-jay, we don't need a DJ! But we <i>do</i> need your help.<br />
             Help us build a fun, kick-ass playlist of tunes that <i>you</i> want to dance to!
           </p>
           <form onSubmit={this.handleSubmit}>
             <label>
-              Search for a song...
-              <input type="text" value={this.state.query} onChange={this.handleChange} name="song" />
-              <input type="submit" value="Submit" />
+              Search for a song... &nbsp;
+              <input type="text"
+               value={this.state.query}
+               onChange={this.handleChange}
+               className="inline-text"
+               name="song" />
+              <input type="submit" value="Submit" className="button" />
             </label>
           </form>
           <div className="songResults">
@@ -296,7 +303,7 @@ class Playlist extends React.Component {
             }
           </div>
         </div>
-        <div className="right-content">
+        <div className="right-content inner-content">
           <PlaylistDisplay iframe={playlistiFrame} />
         </div>
       </div>

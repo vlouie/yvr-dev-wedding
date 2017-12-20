@@ -1,6 +1,6 @@
 body {
-  font-size: 14px;
-  font-family: 'Spectral SC', serif;
+  font-size: 16px;
+  font-family: 'Josefin Slab', serif;
   color: #373737;
   background: #f4f4f4;
   margin: 0;
@@ -25,7 +25,7 @@ h2 {
 }
 
 h3, h4 {
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Spectral SC', serif;
 }
 
 ul {
@@ -46,6 +46,7 @@ ul li {
   margin: 0 auto;
   vertical-align: middle;
   text-align: center;
+  font-family: 'Spectral SC', serif;
 }
 
 .content {
@@ -53,24 +54,44 @@ ul li {
   margin: 0 auto;
 }
 
+.inner-content {
+  padding: 1em;
+  margin: 0 auto;
+  background: #ffffffab;
+}
+
 .left-content {
   width: 70%;
-  margin: 0 auto;
   float: left;
-  background: #fff;
 }
 
 .right-content {
-  width: 30%;
-  margin: 0 auto;
+  width: 24%;
   float: right;
-  background: #fff;
+}
+
+.inline-text{
+  font-family: 'Spectral SC', serif;
+  margin-left: 1em;
+  margin-right: 0.5em;
+}
+
+.button {
+  font-family: 'Spectral SC', serif;
+  color: #c0b283;
+  background-color: #373737;
+}
+
+.songResults {
+  margin-top: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .songResult {
   padding: 0.5em;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
   min-height: 65px;
 }
 .songResult h4 {
@@ -79,6 +100,8 @@ ul li {
 
 .songResult-img {
   float: left;
+  margin-top: 0.25em;
+  margin-right: 0.25em;
 }
 .songResult-info {
   margin-left: 65px;
