@@ -57,7 +57,7 @@ ul li {
 .inner-content {
   padding: 1em;
   margin: 0 auto;
-  background: #ffffffab;
+  background: #ffffff82;
 }
 
 .left-content {
@@ -94,6 +94,12 @@ ul li {
   border-top: 1px solid #ddd;
   min-height: 65px;
 }
+
+.songResult:hover {
+  cursor: pointer;
+  background-color: #fff;
+}
+
 .songResult h4 {
   margin: 0;
 }

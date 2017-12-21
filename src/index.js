@@ -287,7 +287,7 @@ class Playlist extends React.Component {
                onChange={this.handleChange}
                className="inline-text"
                name="song" />
-              <input type="submit" value="Submit" className="button" />
+              <input type="submit" value="Let's go!" className="button" />
             </label>
           </form>
           <div className="songResults">
@@ -304,6 +304,7 @@ class Playlist extends React.Component {
           </div>
         </div>
         <div className="right-content inner-content">
+          <h3>The playlist so far...</h3></br />
           <PlaylistDisplay iframe={playlistiFrame} />
         </div>
       </div>
