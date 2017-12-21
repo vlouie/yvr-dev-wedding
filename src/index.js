@@ -304,7 +304,7 @@ class Playlist extends React.Component {
           </div>
         </div>
         <div className="right-content inner-content">
-          <h3>The playlist so far...</h3></br />
+          <h3>The playlist so far...</h3>
           <PlaylistDisplay iframe={playlistiFrame} />
         </div>
       </div>
