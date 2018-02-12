@@ -8,16 +8,6 @@ import {
 import './index.css';
 import axios from 'axios';
 
-// class Square extends React.Component {
-//   render() {
-//     return (
-//       <button className="square" onClick={() => this.props.onClick({value: 'X'})}>
-//         {this.props.value}
-//       </button>
-//     );
-//   }
-// }
-
 function Square(props){
   return (
     <button className="square" onClick={props.onClick}>
@@ -87,13 +77,38 @@ class Board extends React.Component {
 
 const Home = () => (
   <div className="content">
-    <h2>Victoria & Sterling</h2>
+    <div className="mainPic"></div>
+    <h2 className="no-top-margin">Victoria & Sterling</h2>
   </div>
 )
 
 const Story = () => (
   <div className="content">
     <h2>Our Story</h2>
+    <div className="inner-content">
+      <img src="./img/IMG_20170820_231740_282.jpg" class="main" width="200" />
+      &nbsp;&nbsp;Most of you know that we met in school, and most of you have known either one or both of us for a couple years at least. For context, it was a computer science algorithms tutorial (yuck!), and what got us talking was this shared love for classical music. At the time, both of us were taking music courses; his was an elective theory course, hers were requisite history courses for her minor.<br />
+    &nbsp;&nbsp;Aside from that initial , so instead, have some fast facts to get you caught up on our current
+&nbsp;&nbsp;“I'm taking a music course,” he explained.<br />
+&nbsp;&nbsp;Interest piqued, she asked, “What instruments do you play?”<br />
+&nbsp;&nbsp;“Trumpet, piano, violin, French horn,” he replied, and that sealed the deal. She knew then that she desperately wanted to be his friend. Perhaps she had finally met someone who would gush over Chopin with her and bask in the lush harmonies of Mozart's symphonies. It turned out that Sterling was more of a Bach and Beethoven fan, but now that they were talking, it was only a matter of time before they discovered shared interests in video games, horror movies, and hockey.<br />
+&nbsp;&nbsp;And the rest, they say, is history.
+      </p>
+      <hr />
+      <img src="./img/pic02.jpg" width="200" />
+      <img src="./img/20140706_174659.jpg" width="200" />
+      <img src="./img/20140824_110144.jpg" width="200" />
+      <img src="./img/20150711_124551.jpg" width="200" />
+      <img src="./img/20160904_144445.jpeg" width="200" />
+      <img src="./img/pic03.jpg" width="200" />
+      <img src="./img/IMG495.jpg" width="200" />
+      <img src="./img/pic01.jpg" width="200" />
+      <img src="./img/cute.jpg" width="200" />
+      <img src="./img/20151106_180705.jpg" width="200" />
+      <img src="./img/20151108_111805.jpg" width="200" />
+      <img src="./img/20151217_194409.jpg" width="200" />
+      <img src="./img/20140526_150618.jpg" width="200" />
+    </div>
   </div>
 )
 
@@ -117,11 +132,21 @@ const iframe = '<iframe width="500" height="350" frameborder="0" style="border:0
 const Reception = () => (
   <div className="content">
     <h2>Reception</h2>
-    <h3>September 1, 2018</h3>
-    <h3>Burnaby Mountain Clubhouse</h3>
-    <h4>7600 Halifax St, Burnaby, BC<br />V5A 4H2</h4>
-    <h3>5:00pm to 12:00am</h3>
-    <Map iframe={iframe} />
+    <div className="inner-content">
+    <table border="0">
+    <tr>
+    <td className="td-left">
+      <h3>September 1, 2018</h3>
+      <h3>Burnaby Mountain Clubhouse</h3>
+      <h4>7600 Halifax St, Burnaby, BC<br />V5A 4H2</h4>
+      <h3>5:00pm to 12:00am</h3>
+    </td>
+    <td>
+      <Map iframe={iframe} />
+    </td>
+    </tr>
+    </table>
+    </div>
   </div>
 )
 
@@ -141,43 +166,45 @@ class Rsvp extends React.Component {
     return (
       <div className="content">
         <h2>RSVP</h2>
-        <form>
-        <label>
-          E-mail:
-          <input type="email" name="email" />
-        </label>
-        <br />
-        <label>
-          Name:
-          <input type="text" name="name" />
-        </label>
-        <br />
-        <label>
-        The big question... Will you be there?<br />
-          <input type="radio" name="going" value="yes" checked />Yes!<br />
-          <input type="radio" name="going" value="no" />No, I/we will be square.
-        </label>
-        <br />
-        <label>
-          Plus One's Name:
-          <input type="text" name="name2" />
-        </label>
-        <br />
-        <label>
-          Food Stuffs:
-        </label>
-        <br />
-        <label>
-          Vegan
-          <input type="number" name="vegan" min="0" max="2" /><br />
-          Gluten-free
-          <input type="number" name="vegan" min="0" max="2" /><br />
-          Allergies
-          <textarea /><br />
-        </label>
-        <br />
-        <input type="submit" value="Submit" />
-        </form>
+        <div className="inner-content">
+          <form>
+          <label>
+            <b>E-mail:</b>
+            <input type="email" name="email" />
+          </label>
+          <br />
+          <label>
+            <b>Name:</b>
+            <input type="text" name="name" />
+          </label>
+          <br />
+          <label>
+          <b>The big question... Will you be there?</b><br />
+            <input type="radio" name="going" value="yes" checked />Yes!<br />
+            <input type="radio" name="going" value="no" />No, I/we will be square.
+          </label>
+          <br />
+          <label>
+            <b>Plus One's Name:</b>
+            <input type="text" name="name2" />
+          </label>
+          <br />
+          <label>
+            <b>Food Stuffs:</b>
+          </label>
+          <br />
+          <label>
+            Vegan
+            <input type="number" name="vegan" min="0" max="2" /><br />
+            Gluten-free
+            <input type="number" name="gluten" min="0" max="2" /><br />
+            Allergies
+            <textarea /><br />
+          </label>
+          <br />
+          <input type="submit" value="Submit" />
+          </form>
+        </div>
       </div>
     );
   }
@@ -186,8 +213,10 @@ class Rsvp extends React.Component {
 const Registry = () => (
   <div className="content">
     <h2>Registry</h2>
-    <p>
-    </p>
+    <div className="inner-content">
+      <p>
+      </p>
+    </div>
   </div>
 )
 
@@ -209,19 +238,30 @@ class PlaylistDisplay extends React.Component {
 
 
 class SongResult extends React.Component {
+  handleClick(uri, token) {
+    const playlist_id = '5BjGI2u53v2U4jSWML9FNT';
+    const user_id = 'delusionelle';
+    const encoded_uri = encodeURIComponent(uri);
+    const url = `https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks?uri=${encoded_uri}`
+    axios.post(url,
+      { headers: { Authorization: `Bearer ${token}` } })
+        .then(res => {
+          console.log(res);
+        })
+  }
+
   render() {
-      const playlist_id = '5BjGI2u53v2U4jSWML9FNT';
-      const user_id = 'delusionelle';
-      // https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks
     return(
-      <div className='songResult'>
+      <div
+        className='songResult'
+        onClick={() => this.handleClick(this.props.uri, this.props.token)}>
         <div className='songResult-img'>
           <img src={this.props.albumart} />
         </div>
         <div className='songResult-info'>
-          <h4>{this.props.title}</h4>
-          <h4>{this.props.artist}</h4>
-          <h4>{this.props.album}</h4>
+          <h5>{this.props.title}</h5>
+          <h5>{this.props.artist}</h5>
+          <h5>{this.props.album}</h5>
         </div>
       </div>
     );
@@ -270,6 +310,7 @@ class Playlist extends React.Component {
     }
 
     render() {
+      let token = this.state.token;
       const playlistiFrame = '<iframe src="https://open.spotify.com/embed/user/delusionelle/playlist/5BjGI2u53v2U4jSWML9FNT" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
       return (
       <div className="content">
@@ -298,6 +339,8 @@ class Playlist extends React.Component {
                       artist={trackData.artists[0].name}
                       album={trackData.album.name}
                       albumart={trackData.album.images[2].url}
+                      uri={trackData.uri}
+                      token={token}
                     />;
                 })
             }

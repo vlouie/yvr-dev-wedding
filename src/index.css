@@ -24,7 +24,7 @@ h2 {
   margin-bottom: 0;
 }
 
-h3, h4 {
+h3, h4, h5 {
   font-family: 'Spectral SC', serif;
 }
 
@@ -49,9 +49,25 @@ ul li {
   font-family: 'Spectral SC', serif;
 }
 
+.mainPic {
+  background-image: url("./img/pic01.jpg");
+  background-size: 100%;
+  background-position: 0px -202px;
+  height: 485px;
+  width: 100%;
+}
+
+.no-top-margin {
+  margin-top: 0;
+}
+
 .content {
   width: 90%;
   margin: 0 auto;
+}
+
+.td-left {
+  width: 70%;
 }
 
 .inner-content {
@@ -98,9 +114,10 @@ ul li {
 .songResult:hover {
   cursor: pointer;
   background-color: #fff;
+  font-weight:bold;
 }
 
-.songResult h4 {
+.songResult h5 {
   margin: 0;
 }
 
