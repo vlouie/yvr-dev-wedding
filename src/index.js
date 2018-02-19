@@ -7,6 +7,20 @@ import {
 } from 'react-router-dom';
 import './index.css';
 import axios from 'axios';
+import storymain from './img/IMG_20170820_231740_282.jpg';
+import story01 from './img/pic02.jpg';
+import story02 from './img/20140706_174659.jpg';
+import story03 from './img/20140824_110144.jpg';
+import story04 from './img/20150711_124551.jpg';
+import story05 from './img/20160904_144445.jpeg';
+import story06 from './img/pic03.jpg';
+import story07 from './img/IMG495.jpg';
+import story08 from './img/pic01.jpg';
+import story09 from './img/cute.jpg';
+import story10 from './img/20151106_180705.jpg';
+import story11 from './img/20151108_111805.jpg';
+import story12 from './img/20151217_194409.jpg';
+import story13 from './img/20140526_150618.jpg';
 
 function Square(props){
   return (
@@ -86,28 +100,60 @@ const Story = () => (
   <div className="content">
     <h2>Our Story</h2>
     <div className="inner-content">
-      <img src="./img/IMG_20170820_231740_282.jpg" class="main" width="200" />
-      &nbsp;&nbsp;Most of you know that we met in school, and most of you have known either one or both of us for a couple years at least. For context, it was a computer science algorithms tutorial (yuck!), and what got us talking was this shared love for classical music. At the time, both of us were taking music courses; his was an elective theory course, hers were requisite history courses for her minor.<br />
-    &nbsp;&nbsp;Aside from that initial , so instead, have some fast facts to get you caught up on our current
-&nbsp;&nbsp;“I'm taking a music course,” he explained.<br />
-&nbsp;&nbsp;Interest piqued, she asked, “What instruments do you play?”<br />
-&nbsp;&nbsp;“Trumpet, piano, violin, French horn,” he replied, and that sealed the deal. She knew then that she desperately wanted to be his friend. Perhaps she had finally met someone who would gush over Chopin with her and bask in the lush harmonies of Mozart's symphonies. It turned out that Sterling was more of a Bach and Beethoven fan, but now that they were talking, it was only a matter of time before they discovered shared interests in video games, horror movies, and hockey.<br />
-&nbsp;&nbsp;And the rest, they say, is history.
+      <img src={storymain} class="float-left" width="200" />
+      <p>
+      &nbsp;&nbsp;If you're reading this, that means you're part of a select group of Vancouver-based people who are important to either Victoria, or Sterling, or both of us. Not to worry, the Winnipeg-based folks have a <a href="http://www.sterlingvictoria.com">shindig</a> of their own!<br />
+      &nbsp;&nbsp;Most of you know that we met in school, and most of you have known either one or both of us for a couple years at least. For context, it was a computer science algorithms tutorial (yuck!), and what got us talking was a shared love for classical music. At the time, both of us were taking music courses; his was an elective theory course, hers were requisite history courses for her minor.<br />
+    &nbsp;&nbsp;It turned out that Victoria was more into Chopin and Mozart, and Sterling was more of a Bach and Beethoven fan, but the two of us found a number of other common interests and values.<br />
+    &nbsp;&nbsp;There isn't a whole lot to our "story" aside from what I outlined above; we are a fairly boring couple, and between the two of us, we run the gamut in terms of software development skills (he's technical, she's into all of the workflow/processes side). So instead, have some fun fast facts to get you caught up on who we are:<br />
       </p>
       <hr />
-      <img src="./img/pic02.jpg" width="200" />
-      <img src="./img/20140706_174659.jpg" width="200" />
-      <img src="./img/20140824_110144.jpg" width="200" />
-      <img src="./img/20150711_124551.jpg" width="200" />
-      <img src="./img/20160904_144445.jpeg" width="200" />
-      <img src="./img/pic03.jpg" width="200" />
-      <img src="./img/IMG495.jpg" width="200" />
-      <img src="./img/pic01.jpg" width="200" />
-      <img src="./img/cute.jpg" width="200" />
-      <img src="./img/20151106_180705.jpg" width="200" />
-      <img src="./img/20151108_111805.jpg" width="200" />
-      <img src="./img/20151217_194409.jpg" width="200" />
-      <img src="./img/20140526_150618.jpg" width="200" />
+    <center>
+    <table>
+    <tr>
+    <td>
+      <img src={story01} width="200" />
+    </td>
+    <td>
+      <img src={story02} width="200" />
+    </td>
+    <td>
+      <img src={story03} width="200" />
+    </td>
+    <td>
+      <img src={story04} width="200" />
+    </td>
+    </tr>
+    <tr>
+    <td>
+      <img src={story05} width="200" />
+    </td>
+    <td>
+      <div className="img-trim"><img src={story06} width="200" /></div>
+    </td>
+    <td>
+      <div className="img-trim"><img src={story08} width="200" /></div>
+    </td>
+    <td>
+      <img src={story09} width="200" />
+    </td>
+    </tr>
+    <tr>
+    <td>
+      <img src={story10} width="200" />
+    </td>
+    <td>
+      <img src={story11} width="200" />
+    </td>
+    <td>
+      <img src={story12} width="200" />
+    </td>
+    <td>
+      <img src={story13} width="200" />
+    </td>
+    </tr>
+    </table>
+    </center>
     </div>
   </div>
 )
