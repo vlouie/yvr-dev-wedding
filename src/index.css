@@ -28,6 +28,12 @@ h3, h4, h5 {
   font-family: 'Spectral SC', serif;
 }
 
+
+input {
+  height: 20px;
+  margin-left: 1em;
+}
+
 ul {
   background: #373737;
 }
@@ -100,6 +106,12 @@ div.img-trim {
   font-family: 'Spectral SC', serif;
   margin-left: 1em;
   margin-right: 0.5em;
+}
+
+.fastfacts {
+  width: 40%;
+  height: 300px;
+  text-align: center;
 }
 
 .button {

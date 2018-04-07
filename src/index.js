@@ -107,6 +107,8 @@ const Story = () => (
     &nbsp;&nbsp;It turned out that Victoria was more into Chopin and Mozart, and Sterling was more of a Bach and Beethoven fan, but the two of us found a number of other common interests and values.<br />
     &nbsp;&nbsp;There isn't a whole lot to our "story" aside from what I outlined above; we are a fairly boring couple, and between the two of us, we run the gamut in terms of software development skills (he's technical, she's into all of the workflow/processes side). So instead, have some fun fast facts to get you caught up on who we are:<br />
       </p>
+        <div className="fastfacts"><h2>Victoria</h2></div>
+        <div className="fastfacts"><h2>Sterling</h2></div>
       <hr />
     <center>
     <table>
@@ -200,12 +202,47 @@ class Rsvp extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      name: ''
+      name: '',
+      email: '',
+      going: true,
+      name2: '',
+      vegan: 0,
+      gluten: 0,
+      allergies: ''
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'radio' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state);
+    axios.post('/server/rsvp').then(res => {
+      console.log(res);
+      this.setState({
+        name: '',
+        email: '',
+        going: 'yes',
+        name2: '',
+        vegan: 0,
+        gluten: 0,
+        allergies: ''
+      });
+      //stateObj.token = res.data.token;
+      //stateObj.type = res.data.type;
+      //this.setState(stateObj);
+    })
   }
 
   render() {
@@ -213,42 +250,48 @@ class Rsvp extends React.Component {
       <div className="content">
         <h2>RSVP</h2>
         <div className="inner-content">
-          <form>
+          <form onSubmit={this.handleSubmit} >
           <label>
-            <b>E-mail:</b>
-            <input type="email" name="email" />
+            <h4>People Details:</h4>
           </label>
-          <br />
           <label>
             <b>Name:</b>
-            <input type="text" name="name" />
+            <input type="text" name="name" value={this.state.name} onChange={this.handleInputChange} />
           </label>
+          <br />
+          <br />
+          <label>
+            <b>E-mail:</b>
+            <input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
+          </label>
+          <br />
           <br />
           <label>
           <b>The big question... Will you be there?</b><br />
-            <input type="radio" name="going" value="yes" checked />Yes!<br />
-            <input type="radio" name="going" value="no" />No, I/we will be square.
+            <input type="radio" name="going" onChange={this.handleInputChange} checked={this.state.going} />Yes!<br />
+            <input type="radio" name="going" onChange={this.handleInputChange} checked={!this.state.going} />No, I/we will be square.
           </label>
+          <br />
           <br />
           <label>
-            <b>Plus One's Name:</b>
-            <input type="text" name="name2" />
+            <b>Plus One's Name?:</b>
+            <input type="text" name="name2" value={this.state.name2} onChange={this.handleInputChange} />
           </label>
+          <br />
           <br />
           <label>
-            <b>Food Stuffs:</b>
+            <h4>Food Stuffs:</h4>
           </label>
-          <br />
           <label>
-            Vegan
-            <input type="number" name="vegan" min="0" max="2" /><br />
-            Gluten-free
-            <input type="number" name="gluten" min="0" max="2" /><br />
-            Allergies
-            <textarea /><br />
+            Number of vegans:
+            <input type="number" name="vegan" min="0" max="2" value={this.state.vegan} onChange={this.handleInputChange} /><br /><br />
+            Number of gluten-free folks:
+            <input type="number" name="gluten" min="0" max="2" value={this.state.gluten} onChange={this.handleInputChange} /><br /><br />
+            Food allergies, sensitivity, & severity:<br />
+            <textarea name="allergies" cols="80" rows="12" value={this.state.allergies} onChange={this.handleInputChange} /><br />
           </label>
           <br />
-          <input type="submit" value="Submit" />
+          <input className="button" type="submit" value="Submit" />
           </form>
         </div>
       </div>
