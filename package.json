@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "azure-storage": "^2.8.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "documentdb": "^1.14.2",

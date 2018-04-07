@@ -212,6 +212,12 @@ class Rsvp extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.setGoing = this.setGoing.bind(this);
+  }
+
+  setGoing(event) {
+    console.log(event.target.value);
+    this.setState({ going: event.target.value});
   }
 
   handleInputChange(event) {
@@ -222,13 +228,11 @@ class Rsvp extends React.Component {
     this.setState({
       [name]: value
     });
-    this.setState({value: event.target.value});
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
-    axios.post('/server/rsvp').then(res => {
+    axios.post('/server/rsvp', this.state).then(res => {
       console.log(res);
       this.setState({
         name: '',
@@ -239,9 +243,6 @@ class Rsvp extends React.Component {
         gluten: 0,
         allergies: ''
       });
-      //stateObj.token = res.data.token;
-      //stateObj.type = res.data.type;
-      //this.setState(stateObj);
     })
   }
 
@@ -268,8 +269,10 @@ class Rsvp extends React.Component {
           <br />
           <label>
           <b>The big question... Will you be there?</b><br />
-            <input type="radio" name="going" onChange={this.handleInputChange} checked={this.state.going} />Yes!<br />
-            <input type="radio" name="going" onChange={this.handleInputChange} checked={!this.state.going} />No, I/we will be square.
+            <div onClick={this.setGoing}>
+              <input type="radio" value="yes" name="going" /> Yes!<br />
+              <input type="radio" value="no" name="going"/> No, I/we will be square.<br />
+            </div>
           </label>
           <br />
           <br />
