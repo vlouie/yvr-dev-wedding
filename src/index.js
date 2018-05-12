@@ -331,15 +331,29 @@ class PlaylistDisplay extends React.Component {
 
 class SongResult extends React.Component {
   handleClick(uri, token) {
+    console.log(token);
+    const new_token = 'BQCRu56rvQ8hsSss8EvY0gRXp6uT4n3c4L50xZi5BBFT_hcR1vhkLfSRnIJB8RlUA93TNZ1wO8C1Ngk6fZZ4A9UfPTNvPZPsNunUDtmWNmAsrPAwdkX94VzvUQvzV2bgb8XBNAP6J98gJvoSxdqC7I3O4LNg1rc4pq4nWGIooKVQqTYst0pgIlk-k9q6FCxuEChOgbd_22v0MiDhR4VvZNoyd4Z9QK7p7NgY4LwFAnsdXwqiDC5mqaAj0IAjU_i4ITDLx4NhmA';
     const playlist_id = '5BjGI2u53v2U4jSWML9FNT';
     const user_id = 'delusionelle';
     const encoded_uri = encodeURIComponent(uri);
-    const url = `https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks?uri=${encoded_uri}`
-    axios.post(url,
-      { headers: { Authorization: `Bearer ${token}` } })
-        .then(res => {
-          console.log(res);
-        })
+      console.log(encoded_uri);
+    const url = `https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks?position=0&uris=${encoded_uri}`
+
+      axios.post('/server/fuck', {url: url, token: token, uri: encoded_uri}).then(res => {
+        //TODO: some sort of success notification!
+        console.log(res);
+        setTimeout(function(){
+          document.getElementById('coolshit').src = document.getElementById('coolshit').src
+        }, 2000);
+      })
+
+
+
+    //axios.post(url,
+      //{ headers: {Accept: 'application/json', 'Content-Type': 'application/json', Authorization: `Bearer ${new_token}` } })
+        //.then(res => {
+          //console.log(res);
+        //})
   }
 
   render() {
@@ -366,7 +380,7 @@ class Playlist extends React.Component {
       this.state = {
         query: '',
         token: '',
-        type: '',
+        //type: '',
         tracks: []
       };
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -395,15 +409,15 @@ class Playlist extends React.Component {
       var stateObj = this.state;
       axios.get('/server/authorize_spotify').then(res => {
         console.log(res);
-        stateObj.token = res.data.token;
-        stateObj.type = res.data.type;
+        stateObj.token = res.data.access_token;
+        //stateObj.type = res.data.type;
         this.setState(stateObj);
       })
     }
 
     render() {
       let token = this.state.token;
-      const playlistiFrame = '<iframe src="https://open.spotify.com/embed/user/delusionelle/playlist/5BjGI2u53v2U4jSWML9FNT" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+      const playlistiFrame = '<iframe src="https://open.spotify.com/embed/user/delusionelle/playlist/5BjGI2u53v2U4jSWML9FNT" width="300" height="500" frameborder="0" allowtransparency="true" id="coolshit"></iframe>';
       return (
       <div className="content">
         <h2>Playlist</h2>
