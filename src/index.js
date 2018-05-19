@@ -107,9 +107,48 @@ const Story = () => (
     &nbsp;&nbsp;It turned out that Victoria was more into Chopin and Mozart, and Sterling was more of a Bach and Beethoven fan, but the two of us found a number of other common interests and values.<br />
     &nbsp;&nbsp;There isn't a whole lot to our "story" aside from what I outlined above; we are a fairly boring couple, and between the two of us, we run the gamut in terms of software development skills (he's technical, she's into all of the workflow/processes side). So instead, have some fun fast facts to get you caught up on who we are:<br />
       </p>
-        <div className="fastfacts"><h2>Victoria</h2></div>
-        <div className="fastfacts"><h2>Sterling</h2></div>
-      <hr />
+    <table class="fastfacts-table">
+      <tr>
+        <td>
+          <div className="fastfacts"><h2>Victoria</h2>
+            <p>
+            <div id="slideshow">
+               <div>
+                 Grew up cheering for the Detroit Red Wings, but has since adopted the Winnipeg Jets as her team.
+               </div>
+               <div>
+                 Is an avid reader, especially of young adult fantasy with a splash of magic.
+               </div>
+               <div>
+                 Was part of a Guitar Hero band with her closest friends back in university.
+               </div>
+            </div>
+            </p>
+          </div>
+        </td>
+        <td>
+          <div className="fastfacts"><h2>Sterling</h2>
+            <p>
+            <div id="slideshow2">
+               <div>
+                Likes his coffee black and his food spicy.
+               </div>
+               <div>
+                Can play the piano, trumpet, French horn, and violin.
+               </div>
+               <div>
+                Once cut, layered, bleached, and dyed Victoria's hair pink (at her request).
+               </div>
+               <div>
+                Can serve a mean smash in badminton -- he plays every weekend!
+               </div>
+            </div>
+            </p>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <hr />
     <center>
     <table>
     <tr>

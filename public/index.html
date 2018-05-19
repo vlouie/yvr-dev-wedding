@@ -20,12 +20,39 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Victoria & Sterling — September 1, 2018</title>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+    <script>
+      $("#slideshow > div:gt(0)").hide();
+      $("#slideshow2 > div:gt(0)").hide();
+
+      setInterval(function() {
+        $('#slideshow > div:first')
+          .fadeOut(1000)
+          .next()
+          .fadeIn(1100)
+          .end()
+          .appendTo('#slideshow');
+      },  3000);
+
+      setInterval(function() {
+        $('#slideshow2 > div:first')
+          .fadeOut(1000)
+          .next()
+          .fadeIn(1100)
+          .end()
+          .appendTo('#slideshow2');
+      },  3000);
+
+    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.
