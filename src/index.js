@@ -272,7 +272,8 @@ class Rsvp extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     axios.post('/server/rsvp', this.state).then(res => {
-      console.log(res);
+      this.confirmation.classList.toggle('hide');
+
       this.setState({
         name: '',
         email: '',
@@ -332,6 +333,11 @@ class Rsvp extends React.Component {
             Food allergies, sensitivity, & severity:<br />
             <textarea name="allergies" cols="80" rows="12" value={this.state.allergies} onChange={this.handleInputChange} /><br />
           </label>
+          <br />
+          <Router>
+            <div className="rsvpConfirm hide" ref={ref => this.confirmation = ref}>Thanks for RSVP'ing! Whether or not you're coming, you can help us put our <Link to="/playlist">playlist</Link> together!
+            </div>
+          </Router>
           <br />
           <input className="button" type="submit" value="Submit" />
           </form>

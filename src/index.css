@@ -38,6 +38,12 @@ ul li {
   margin-right: 1em;
 }
 
+input {
+  margin-left: 1em;
+  font-family: 'Spectral SC', serif;
+  font-size: 16px;
+}
+
 .nav {
   padding: 0;
   padding-top: 20px;
@@ -98,7 +104,6 @@ div.img-trim {
 
 .inline-text{
   font-family: 'Spectral SC', serif;
-  margin-left: 1em;
   margin-right: 0.5em;
 }
 
@@ -114,10 +119,27 @@ div.img-trim {
   text-align: center;
 }
 
+.rsvpConfirm {
+  background: #dcd0c0;
+  padding: 0.2em;
+  font-family: 'Pacifico', cursive;
+  border-radius: 5px;
+}
+
+.rsvpConfirm a {
+  color: #373737;
+  text-decoration: underline;
+}
+
+.hide {
+  display: none;
+}
+
 .button {
   font-family: 'Spectral SC', serif;
   color: #c0b283;
   background-color: #373737;
+  margin-left: 0;
 }
 
 .songResults {

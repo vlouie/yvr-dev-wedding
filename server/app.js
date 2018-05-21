@@ -10,7 +10,7 @@ const morgan = require('morgan');
 const path = require('path');
 const request = require('request');
 const azure = require('azure-storage');
-//const tableSvc = azure.createTableService('myaccount', 'myaccesskey');
+const tableSvc = azure.createTableService('vivivivibabybabybaby', 'NXSC5iB5a+KZrXSsMpm/dpNDMURwAYL1YlTqxooqoFXNZm11rPuZLaF8uvzxCyZW04bF04lIDsqug3xU5dIkuA==');
 
 const app = express();
 
@@ -28,30 +28,34 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.post('/server/rsvp', (req, res) => {
   var rsvpResponse = req.body;
-  console.log(rsvpResponse);
-  var entGen = azure.TableUtilities.entityGenerator;
-  var entry = {
-    PartitionKey: entGen.String('rsvps'),
-    RowKey: entGen.String('1'),
-    name: entGen.String(rsvpResponse.name),
-    email: entGen.String(rsvpResponse.email),
-    going: entGen.String(rsvpResponse.going),
-    name2: entGen.String(rsvpResponse.name2),
-    vegan: entGen.String(rsvpResponse.vegan),
-    gluten: entGen.String(rsvpResponse.gluten),
-    allergies: entGen.String(rsvpResponse.allergies),
-    date: entGen.DateTime(new Date()),
-  };
-  let response = { success: true };
-  //tableSvc.insertEntity('mytable', entry, function (error, result, response) {
-    //if(!error){
-      //// Entity inserted
-      //res.send(response);
-    //} else {
-      //response.success = false;
-      //res.send(response);
-    //}
-  //});
+  tableSvc.createTableIfNotExists('rsvpTEST', function(error, result, response){
+    if(!error){
+      // Table exists or created
+      var entGen = azure.TableUtilities.entityGenerator;
+      var entry = {
+        PartitionKey: entGen.String('rsvps'),
+        RowKey: entGen.String(Date.now().toString()),
+        name: entGen.String(rsvpResponse.name),
+        email: entGen.String(rsvpResponse.email),
+        going: entGen.String(rsvpResponse.going),
+        name2: entGen.String(rsvpResponse.name2),
+        vegan: entGen.String(rsvpResponse.vegan),
+        gluten: entGen.String(rsvpResponse.gluten),
+        allergies: entGen.String(rsvpResponse.allergies),
+        date: entGen.DateTime(new Date()),
+      };
+      let response = { success: true };
+      tableSvc.insertEntity('rsvpTEST', entry, {echoContent: true}, function (error, result, response) {
+        if(!error){
+          // Entity inserted
+          res.send(response);
+        } else {
+          response.success = false;
+          res.send(response);
+        }
+      });
+    }
+  });
 });
 
 app.get('/server/authorize_spotify', function(req, res) {
