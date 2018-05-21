@@ -167,20 +167,6 @@ const Story = () => (
     </tr>
     <tr>
     <td>
-      <img src={story05} width="200" />
-    </td>
-    <td>
-      <div className="img-trim"><img src={story06} width="200" /></div>
-    </td>
-    <td>
-      <div className="img-trim"><img src={story08} width="200" /></div>
-    </td>
-    <td>
-      <img src={story09} width="200" />
-    </td>
-    </tr>
-    <tr>
-    <td>
       <img src={story10} width="200" />
     </td>
     <td>
@@ -191,6 +177,20 @@ const Story = () => (
     </td>
     <td>
       <img src={story13} width="200" />
+    </td>
+    </tr>
+    <tr>
+    <td>
+      <img src={story05} width="200" />
+    </td>
+    <td>
+      <div className="img-trim"><img src={story06} width="200" /></div>
+    </td>
+    <td>
+      <div className="img-trim"><img src={story08} width="200" /></div>
+    </td>
+    <td>
+      <img src={story09} width="200" />
     </td>
     </tr>
     </table>
@@ -226,11 +226,22 @@ const Reception = () => (
       <h3>September 1, 2018</h3>
       <h3>Burnaby Mountain Clubhouse</h3>
       <h4>7600 Halifax St, Burnaby, BC<br />V5A 4H2</h4>
-      <h3>5:00pm to 12:00am</h3>
+      <h3>6:00pm to 12:00am</h3>
     </td>
     <td>
       <Map iframe={iframe} />
     </td>
+    </tr>
+    <tr>
+      <td>
+        <h3>FYI:</h3>
+        <ul>
+          <li>There will be a dancefloor!</li>
+          <li>There will be a photobooth!</li>
+          <li>There will be lots of parking available!</li>
+          <li>There will be a cash bar! (But you'll each get 2 drink tickets to start.)</li>
+        </ul>
+      </td>
     </tr>
     </table>
     </div>
@@ -252,11 +263,16 @@ class Rsvp extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.setGoing = this.setGoing.bind(this);
+    this.redirect = this.redirect.bind(this);
   }
 
   setGoing(event) {
     console.log(event.target.value);
     this.setState({ going: event.target.value});
+  }
+
+  redirect(event) {
+    this.props.history.push("/playlist");
   }
 
   handleInputChange(event) {
@@ -334,10 +350,8 @@ class Rsvp extends React.Component {
             <textarea name="allergies" cols="80" rows="12" value={this.state.allergies} onChange={this.handleInputChange} /><br />
           </label>
           <br />
-          <Router>
-            <div className="rsvpConfirm hide" ref={ref => this.confirmation = ref}>Thanks for RSVP'ing! Whether or not you're coming, you can help us put our <Link to="/playlist">playlist</Link> together!
-            </div>
-          </Router>
+          <div className="rsvpConfirm hide" onClick={this.redirect} ref={ref => this.confirmation = ref}>Thanks for RSVP'ing! Whether or not you're coming, you can help us put our <span>playlist</span> together!
+          </div>
           <br />
           <input className="button" type="submit" value="Submit" />
           </form>
@@ -411,7 +425,6 @@ class Playlist extends React.Component {
       this.state = {
         query: '',
         token: '',
-        //type: '',
         tracks: []
       };
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -441,7 +454,6 @@ class Playlist extends React.Component {
       axios.get('/server/authorize_spotify').then(res => {
         console.log(res);
         stateObj.token = res.data.access_token;
-        //stateObj.type = res.data.type;
         this.setState(stateObj);
       })
     }
@@ -455,11 +467,12 @@ class Playlist extends React.Component {
         <div className="left-content inner-content">
           <p>
             DJ schmee-jay, we don't need a DJ! But we <i>do</i> need your help.<br />
-            Help us build a fun, kick-ass playlist of tunes that <i>you</i> want to dance to!
+            Help us build a fun, kick-ass playlist of tunes that <i>you</i> want to dance to!<br />
+            (Yes, we will be moderating this list before it goes live.)
           </p>
           <form onSubmit={this.handleSubmit}>
             <label>
-              Search for a song... &nbsp;
+              Search for a song & click to add... &nbsp;
               <input type="text"
                value={this.state.query}
                onChange={this.handleChange}
@@ -484,7 +497,7 @@ class Playlist extends React.Component {
           </div>
         </div>
         <div className="right-content inner-content">
-          <h3>The playlist so far...</h3>
+          <h3 className='no-top-margin'>The playlist so far...</h3>
           <PlaylistDisplay iframe={playlistiFrame} />
         </div>
       </div>
