@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.post('/server/rsvp', (req, res) => {
   var rsvpResponse = req.body;
+  // TODO: switch back to the LEGIT table when go-live
   tableSvc.createTableIfNotExists('rsvpTEST', function(error, result, response){
     if(!error){
       // Table exists or created

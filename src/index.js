@@ -223,9 +223,9 @@ const Reception = () => (
     <table border="0">
     <tr>
     <td className="td-left">
-      <h3>September 1, 2018</h3>
+      <h3 className="nobold">September 1, 2018</h3>
       <h3>Burnaby Mountain Clubhouse</h3>
-      <h4>7600 Halifax St, Burnaby, BC<br />V5A 4H2</h4>
+      <h4 className="nobold">7600 Halifax St, Burnaby, BC<br />V5A 4H2</h4>
       <h3>6:00pm to 12:00am</h3>
     </td>
     <td>
@@ -242,6 +242,13 @@ const Reception = () => (
           <li>There will be a cash bar! (But you'll each get 2 drink tickets to start.)</li>
         </ul>
       </td>
+      <td>
+        If you have any questions about the day-of, feel free to contact us:
+        <ul>
+        <li><b>E-mail:</b> victoria.and.sterling[@]gmail.com</li>
+        <li><b>Phone:</b> 6o4.842.1337</li>
+        </ul>
+      </td>
     </tr>
     </table>
     </div>
@@ -254,12 +261,15 @@ class Rsvp extends React.Component {
     this.state = {
       name: '',
       email: '',
-      going: true,
+      going: null,
       name2: '',
       vegan: 0,
       gluten: 0,
-      allergies: ''
+      allergies: '',
+      disabled: false,
+      errors: []
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.setGoing = this.setGoing.bind(this);
@@ -267,7 +277,12 @@ class Rsvp extends React.Component {
   }
 
   setGoing(event) {
-    console.log(event.target.value);
+    //console.log(event.target.value);
+    if (event.target.value === 'no') {
+      this.setState({ disabled: true });
+    } else {
+      this.setState({ disabled: false });
+    }
     this.setState({ going: event.target.value});
   }
 
@@ -287,19 +302,37 @@ class Rsvp extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post('/server/rsvp', this.state).then(res => {
-      this.confirmation.classList.toggle('hide');
+    let errs = [];
+    if (this.state.name === '') {
+      errs.push('Your name is required to RSVP.&nbsp;');
+    }
+    if (this.state.going === null) {
+      errs.push('Your RSVP response is required.');
+    }
+    this.setState({errors: errs});
 
-      this.setState({
-        name: '',
-        email: '',
-        going: 'yes',
-        name2: '',
-        vegan: 0,
-        gluten: 0,
-        allergies: ''
-      });
-    })
+    if (errs.length === 0){
+      axios.post('/server/rsvp', this.state).then(res => {
+        this.confirmation.classList.toggle('hide');
+        if (!this.errors.classList.contains('hide')){
+          this.errors.classList.toggle('hide');
+        }
+
+        this.setState({
+          name: '',
+          email: '',
+          going: 'yes',
+          name2: '',
+          vegan: 0,
+          gluten: 0,
+          allergies: '',
+          errors: []
+        });
+      })
+    } else {
+      this.errors.classList.toggle('hide');
+      errs = [];
+    }
   }
 
   render() {
@@ -307,6 +340,11 @@ class Rsvp extends React.Component {
       <div className="content">
         <h2>RSVP</h2>
         <div className="inner-content">
+          <p>
+            Please RSVP by <b><u>August 18</u>, end of day</b>!<br />
+            If we do not hear from you at that time, we will assume that you are a <b>no</b>!<br />
+            If you need to update your RSVP response, just fill the form out again! We'll use your last response as your final one.
+          </p>
           <form onSubmit={this.handleSubmit} >
           <label>
             <h4>People Details:</h4>
@@ -334,7 +372,7 @@ class Rsvp extends React.Component {
           <br />
           <label>
             <b>Plus One's Name?:</b>
-            <input type="text" name="name2" value={this.state.name2} onChange={this.handleInputChange} />
+            <input type="text" name="name2" value={this.state.name2} onChange={this.handleInputChange} disabled={this.state.disabled} />
           </label>
           <br />
           <br />
@@ -343,13 +381,16 @@ class Rsvp extends React.Component {
           </label>
           <label>
             Number of vegans:
-            <input type="number" name="vegan" min="0" max="2" value={this.state.vegan} onChange={this.handleInputChange} /><br /><br />
+            <input type="number" name="vegan" min="0" max="2" value={this.state.vegan} onChange={this.handleInputChange} disabled={this.state.disabled} /><br /><br />
             Number of gluten-free folks:
-            <input type="number" name="gluten" min="0" max="2" value={this.state.gluten} onChange={this.handleInputChange} /><br /><br />
+            <input type="number" name="gluten" min="0" max="2" value={this.state.gluten} onChange={this.handleInputChange} disabled={this.state.disabled} /><br /><br />
             Food allergies, sensitivity, & severity:<br />
-            <textarea name="allergies" cols="80" rows="12" value={this.state.allergies} onChange={this.handleInputChange} /><br />
+            <textarea name="allergies" cols="80" rows="12" value={this.state.allergies} onChange={this.handleInputChange} disabled={this.state.disabled} /><br />
           </label>
           <br />
+          <div className="rsvpError hide" ref={ref => this.errors = ref}>
+            { this.state.errors }
+          </div>
           <div className="rsvpConfirm hide" onClick={this.redirect} ref={ref => this.confirmation = ref}>Thanks for RSVP'ing! Whether or not you're coming, you can help us put our <span>playlist</span> together!
           </div>
           <br />
@@ -366,7 +407,14 @@ const Registry = () => (
     <h2>Registry</h2>
     <div className="inner-content">
       <p>
+        As you know, we've already been married for over a year now, so there isn't much by way of housewares that we need now.
       </p>
+      <p>
+        We've got an Amazon.ca registry of a few random things we want, but otherwise, our main concern is paying down our mortgage, and any monetary gifts would go towards that!
+      </p>
+      <div className="fakeButton">
+        <a href="http://a.co/3aAL1VQ" target="_blank" rel="noopener noreferrer">Take me to your Amazon wishlist!</a>
+      </div>
     </div>
   </div>
 )

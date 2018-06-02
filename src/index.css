@@ -132,6 +132,38 @@ div.img-trim {
   padding: 1em;
 }
 
+.nobold {
+  font-weight: normal;
+}
+
+input[type="text"]:disabled {
+  background: #dddddd;
+}
+input[type="number"]:disabled {
+  background: #dddddd;
+}
+textarea:disabled {
+  background: #dddddd;
+}
+
+.fakeButton {
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background: #373737;
+  border-radius: 5px;
+  padding: 0.3em;
+  font-family: 'Spectral SC', serif;
+}
+
+.rsvpError {
+  background: #dcd0c0;
+  padding: 0.2em;
+  font-family: 'Pacifico', cursive;
+  border-radius: 5px;
+}
+
 .rsvpConfirm {
   background: #dcd0c0;
   padding: 0.2em;
