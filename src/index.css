@@ -1,6 +1,6 @@
 body {
-  font-size: 20px;
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Spectral SC', serif;
+  /*font-family: 'Josefin Slab', serif;*/
   color: #373737;
   background: #f4f4f4;
   margin: 0;
@@ -55,12 +55,48 @@ input {
   font-family: 'Spectral SC', serif;
 }
 
-.mainPic {
-  background-image: url("./img/pic01.jpg");
-  background-size: 100%;
-  background-position: 0px -202px;
-  height: 485px;
-  width: 100%;
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-height: 600px) {
+  .mainPic {
+    background-image: url("./img/pic01.jpg");
+    background-size: 100%;
+    background-position: 0px -202px;
+    height: 585px;
+    width: 100%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-height: 768px) {
+  .mainPic {
+    background-image: url("./img/pic01.jpg");
+    background-size: 100%;
+    background-position: 0px -202px;
+    height: 755px;
+    width: 100%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-height: 992px) {
+  .mainPic {
+    background-image: url("./img/pic01.jpg");
+    background-size: 100%;
+    background-position: 0px -202px;
+    height: 980px;
+    width: 100%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-height: 1200px) {
+  .mainPic {
+    background-image: url("./img/pic01.jpg");
+    background-size: 100%;
+    background-position: 0px -202px;
+    height: 1190px;
+    width: 100%;
+  }
 }
 
 .no-top-margin {
@@ -208,6 +244,9 @@ textarea:disabled {
   cursor: pointer;
   background-color: #fff;
   font-weight:bold;
+  background-image: url("./img/add.png");
+  background-position: right 30px center;
+  background-repeat: no-repeat;
 }
 
 .songResult h5 {

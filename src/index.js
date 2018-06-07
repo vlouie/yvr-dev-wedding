@@ -103,9 +103,9 @@ const Story = () => (
       <img src={storymain} class="float-left" width="200" />
       <p>
       &nbsp;&nbsp;If you're reading this, that means you're part of a select group of Vancouver-based people who are important to either Victoria, or Sterling, or both of us. Not to worry, the Winnipeg-based folks have a <a href="http://www.sterlingvictoria.com">shindig</a> of their own!<br />
-      &nbsp;&nbsp;Most of you know that we met in school, and most of you have known either one or both of us for a couple years at least. For context, it was a computer science algorithms tutorial (yuck!), and what got us talking was a shared love for classical music. At the time, both of us were taking music courses; his was an elective theory course, hers were requisite history courses for her minor.<br />
-    &nbsp;&nbsp;It turned out that Victoria was more into Chopin and Mozart, and Sterling was more of a Bach and Beethoven fan, but the two of us found a number of other common interests and values.<br />
-    &nbsp;&nbsp;There isn't a whole lot to our "story" aside from what I outlined above; we are a fairly boring couple, and between the two of us, we run the gamut in terms of software development skills (he's technical, she's into all of the workflow/processes side). So instead, have some fun fast facts to get you caught up on who we are:<br />
+      &nbsp;&nbsp;Most of you know that we met in school in an algorithms tutorial. What got us talking was a shared love for classical music. At the time, both of us were taking music courses; his was an elective theory course, hers were requisite history courses for her minor.<br />
+    &nbsp;&nbsp;It turned out that Victoria was more into Chopin and Mozart, and Sterling was more of a Bach and Beethoven fan, but that hasn't stopped the two of us from attending VSO concerts and playing the piano for each other. Beyond our shared love for classical music, we found a number of other common interests including horror movies, hockey, video games, and trashy TV shows like 90 Day Fiance.<br />
+    &nbsp;&nbsp;There isn't much else to our story, and many of you know both of us. So instead, have some fun fast facts to get you caught up on who we are:<br />
       </p>
     <table class="fastfacts-table">
       <tr>
@@ -114,13 +114,19 @@ const Story = () => (
             <p>
             <div id="slideshow">
                <div>
-                 Grew up cheering for the Detroit Red Wings, but has since adopted the Winnipeg Jets as her team.
+                 Grew up cheering for the Detroit Red Wings, but has since adopted the Winnipeg Jets as her hockey team.
                </div>
                <div>
                  Is an avid reader, especially of young adult fantasy with a splash of magic.
                </div>
                <div>
                  Was part of a Guitar Hero band with her closest friends back in university.
+               </div>
+               <div>
+                 Plays the piano, flute, and guitar. At one point she could play a basic rock beat on the drums, too.
+               </div>
+               <div>
+                 Her first CD was Avril Lavigne's debut, <i>Let Go</i>. It was purchased with allowance money.
                </div>
             </div>
             </p>
@@ -142,12 +148,32 @@ const Story = () => (
                <div>
                 Can serve a mean smash in badminton -- he plays every weekend!
                </div>
+               <div>
+                Has lived in Winnipeg, St. Catherines, Penticton, Kelowna, and now Vancouver!
+               </div>
+               <div>
+                Is a combined Math & Computer Science major.
+               </div>
+               <div>
+                Is definitely the better cook of the two...
+               </div>
             </div>
             </p>
           </div>
         </td>
       </tr>
     </table>
+    <br />
+    <br />
+    <h2>About The Website...</h2>
+    <p>
+      Victoria made this website using ReactJS, powered by a NodeJS backend.<br />
+      She did not do very thorough QA, so please forgive any bugs you find (and let her know of any bugs you find!).<br />
+      (The code is also very ugly, so if you ever see it, please do not judge her <i>too</i> harshly for it.)<br />
+      If you want to see what features/bugs she is currently working on, feel free to browse the <a href="https://trello.com/b/ICaFQkiC/yvr-wedding-website" target="_blank" rel="noopener noreferrer">Trello</a>.<br />
+      Sterling helped her with website deployment using Azure's Web App Service. It was a harrowing experience.
+    </p>
+
     <hr />
     <center>
     <table>
@@ -341,9 +367,10 @@ class Rsvp extends React.Component {
         <h2>RSVP</h2>
         <div className="inner-content">
           <p>
-            Please RSVP by <b><u>August 18</u>, end of day</b>!<br />
+            Please RSVP by <b><u>August 1</u>, end of day</b>!<br />
             If we do not hear from you at that time, we will assume that you are a <b>no</b>!<br />
-            If you need to update your RSVP response, just fill the form out again! We'll use your last response as your final one.
+            If you need to update your RSVP response, just fill the form out again! We'll use your last response as your final one.<br />
+            <b><u>NOTE:</u> if you're one of the few families invited, please enter all attending family members' names into the "Plus One's" box.</b>
           </p>
           <form onSubmit={this.handleSubmit} >
           <label>
@@ -371,7 +398,7 @@ class Rsvp extends React.Component {
           <br />
           <br />
           <label>
-            <b>Plus One's Name?:</b>
+            <b>Plus One's Name(s)?:</b>
             <input type="text" name="name2" value={this.state.name2} onChange={this.handleInputChange} disabled={this.state.disabled} />
           </label>
           <br />
@@ -381,9 +408,9 @@ class Rsvp extends React.Component {
           </label>
           <label>
             Number of vegans:
-            <input type="number" name="vegan" min="0" max="2" value={this.state.vegan} onChange={this.handleInputChange} disabled={this.state.disabled} /><br /><br />
+            <input type="number" name="vegan" min="0" max="4" value={this.state.vegan} onChange={this.handleInputChange} disabled={this.state.disabled} /><br /><br />
             Number of gluten-free folks:
-            <input type="number" name="gluten" min="0" max="2" value={this.state.gluten} onChange={this.handleInputChange} disabled={this.state.disabled} /><br /><br />
+            <input type="number" name="gluten" min="0" max="4" value={this.state.gluten} onChange={this.handleInputChange} disabled={this.state.disabled} /><br /><br />
             Food allergies, sensitivity, & severity:<br />
             <textarea name="allergies" cols="80" rows="12" value={this.state.allergies} onChange={this.handleInputChange} disabled={this.state.disabled} /><br />
           </label>
@@ -407,7 +434,7 @@ const Registry = () => (
     <h2>Registry</h2>
     <div className="inner-content">
       <p>
-        As you know, we've already been married for over a year now, so there isn't much by way of housewares that we need now.
+        As you know, we've already been married for over a year now, so there isn't much by way of housewares that we need at this point.
       </p>
       <p>
         We've got an Amazon.ca registry of a few random things we want, but otherwise, our main concern is paying down our mortgage, and any monetary gifts would go towards that!
@@ -442,7 +469,7 @@ class SongResult extends React.Component {
 
     axios.post('/server/fuck', { token: token, uri: encoded_uri }).then(res => {
       //TODO: some sort of success notification!
-      console.log(res);
+      //console.log(res);
       setTimeout(function(){
         document.getElementById('coolshit').src = document.getElementById('coolshit').src
       }, 2000);
@@ -491,7 +518,7 @@ class Playlist extends React.Component {
       axios.get(`https://api.spotify.com/v1/search?type=track&market=CA&limit=20&q=${this.state.query}`,
       { headers: { Authorization: `Bearer ${this.state.token}` } })
         .then(res => {
-          console.log(res);
+          //console.log(res);
           stateObj.tracks = res.data.tracks.items;
           this.setState(stateObj);
         })
@@ -500,7 +527,7 @@ class Playlist extends React.Component {
     componentDidMount(){
       var stateObj = this.state;
       axios.get('/server/authorize_spotify').then(res => {
-        console.log(res);
+        //console.log(res);
         stateObj.token = res.data.access_token;
         this.setState(stateObj);
       })
