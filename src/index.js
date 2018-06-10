@@ -253,6 +253,15 @@ const Reception = () => (
       <h3>Burnaby Mountain Clubhouse</h3>
       <h4 className="nobold">7600 Halifax St, Burnaby, BC<br />V5A 4H2</h4>
       <h3>6:00pm to 12:00am</h3>
+      <div title="Add to Calendar" className="addeventatc">
+        Add to Calendar
+        <span className="start">09/01/2018 06:00 PM</span>
+        <span className="end">09/02/2018 12:00 AM</span>
+        <span className="timezone">America/Los_Angeles</span>
+        <span className="title">Victoria & Sterling - Wedding Reception</span>
+        <span className="description">Victoria & Sterling's wedding reception. Website: http://www.victoriasterlingyvr.com/</span>
+        <span className="location">7600 Halifax St, Burnaby, BC</span>
+      </div>
     </td>
     <td>
       <Map iframe={iframe} />
